@@ -6,7 +6,7 @@ int sum;
 
 #include "uart.h"  // UART driver code file
 
-int nwisn001_main() {
+int cs122a_main() {
   int i;
   sum = 10;
   char string[64];
