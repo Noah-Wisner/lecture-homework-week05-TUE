@@ -27,6 +27,8 @@ int uart_init() {
     *(up->base + UARTLCR) = 0x60;   //set WLEN = 11
     *(up->base + UARTIBRD) = uart_baud_rates[i];  //baud
   }
+
+  return 0;
 }
 
 // input a char from UART pointed by up
