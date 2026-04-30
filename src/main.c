@@ -20,7 +20,7 @@ int cs122a_main() {
     unsigned int lcr = *(up->base + UARTLCR);
     unsigned int baud = 7370000 / (16 * divisor);
 
-    uprintf(&uart[0], "UART[%d] Baudrate: %d\n", i, baud);
+    uprintf(&uart[0], "UART[%d] Baudrate: %u\n", i, baud);
     uprintf(&uart[0], "UART[%d] Line Control Register: 0x%x\n", i, lcr);
   }
   sum = 100;
