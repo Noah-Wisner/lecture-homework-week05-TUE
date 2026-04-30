@@ -12,6 +12,17 @@ int cs122a_main() {
   char string[64];
   UART* up;
   uart_init();  // initialize UARTs
+
+  for (int i=0; i <4; i++)
+  {
+    UART *up = &uart[i];
+    unsigned int divisor = *(up->base + UARTIBRD);
+    unsigned int lcr = *(up->base + UARTLCR);
+    unsigned int baud = 7370000 / (16 * divisor);
+
+    uprintf(&uart[0], "UART[%d] Baudrate: %d\n", i, baud);
+    uprintf(&uart[0], "UART[%d] Line Control Register: 0x%x\n", i, lcr);
+  }
   sum = 100;
   up = &uart[0];  // test UART0
   uprints(up, "Enter lines from serial terminal 0\n\r");
