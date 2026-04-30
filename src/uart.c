@@ -9,6 +9,7 @@
 UART uart[4];  // 4 UART structures
 
 uint8_t uart_rate_divisors[] = {0x04, 0x0C, 0x18, 0x20, 0x30};
+uint8_t uart_baud_rates[] = {0x30, 0x20, 0x18, 0x0C};
 
 // UART initialization function
 int uart_init() {
@@ -20,6 +21,12 @@ int uart_init() {
     up->n = i;
   }
   uart[3].base = (char*)(0x10009000);  // uart3 at 0x10009000
+
+  for (i =0; i <4; i++) {
+    up = &uart[i];
+    *(up->base + UARTLCR) = 0x60;   //set WLEN = 11
+    *(up->base + UARTIBRD) = uart_baud_rates[i];  //baud
+  }
 }
 
 // input a char from UART pointed by up
